@@ -10,15 +10,15 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
+// Hello! I am aiming for a grade of Meets Expectations.
 
-
+// 1 - Create an array of objects including quotes by black women, each object has a quote, citation, source, and year property.
 
 let quotes = [
 {
   quote: "I did then what I knew how to do. Now that I know better, I do better.",
   source: "Maya Angelou",
   citation: "Interview with Oprah Winfrey",
-  year: 2011
 },
 {
   quote: "For me, becoming isn’t about arriving somewhere or achieving a certain aim. I see it instead as forward motion, a means of evolving, a way to reach continuously toward a better self. The journey doesn’t end.",
@@ -89,25 +89,50 @@ let quotes = [
 },
 ];
 
+// 2 - Test code by logging it to the console.
+
+console.log(quotes);
 
 /***
  * `getRandomQuote` function
 ***/
 
-const getRandomQuote = (arr) => {
-  for (let i = 0; i < quotes.length; i++) {
+// Create a function called getRandomQuote that 1 - generates a random number between zero and the length of the quotes array, then  2- stores that random number and 3 - uses it to reference the index number of one of the objects in the quotes array
+
+function getRandomQuote() {
 
     const num = Math.floor(Math.random()* quotes.length);
-    console.log(quotes[num]);
-    return `${quotes[num]}`;
-}}
+    console.log(num);
+    return quotes[num];
+}
 
-console.log(quotes);
 
 /***
  * `printQuote` function
 ***/
 
+// Create a printQuote() function which 1 - stores the result of getRandomQuote, 2 - Adds the quote and source property content into the html as a paragraph tags.
+function printQuote() {
+  let randomQuoteObject = getRandomQuote();
+  let html = `
+  <p class='quote'> ${randomQuoteObject.quote} </p> 
+  <p class='source'> ${randomQuoteObject.source}
+  `
+  ;
+  
+  // Create tqo if statements to test if there is a value for citation and year. If so, add the values of those properties into html span tags.
+
+  if (randomQuoteObject.citation) {
+    html += `<span class='citation'>${randomQuoteObject.citation}</span>`;
+  }
+  if (randomQuoteObject.year) {
+    html += `<span class='year'>${randomQuoteObject.year}</span>`;
+  }
+// Add the closing p tag and add the string stored in the html variable to the html.
+  html += `</p>`;
+  document.getElementById('quote-box').innerHTML = html;
+}
+  var html = printQuote();
 
 
 /***
@@ -115,4 +140,4 @@ console.log(quotes);
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-// document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
